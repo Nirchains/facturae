@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include facturae *.css
+recursive-include facturae *.csv
+recursive-include facturae *.html
+recursive-include facturae *.ico
+recursive-include facturae *.js
+recursive-include facturae *.json
+recursive-include facturae *.md
+recursive-include facturae *.png
+recursive-include facturae *.py
+recursive-include facturae *.svg
+recursive-include facturae *.txt
+recursive-exclude facturae *.pyc
