@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<namespace:Facturae xmlns:namespace2="http://uri.etsi.org/01903/v1.3.2#" xmlns:namespace3="http://www.w3.org/2000/09/xmldsig#" xmlns:namespace="http://www.facturae.es/Facturae/2009/v3.2/Facturae">
+  <FileHeader>
+    <SchemaVersion>3.2</SchemaVersion>
+    <Modality>I</Modality>
+    <InvoiceIssuerType>EM</InvoiceIssuerType>
+    <Batch>
+      <BatchIdentifier>{{sales_invoice.tax_id}}-{{sales_invoice.serie}}</BatchIdentifier>
+      <InvoicesCount>1</InvoicesCount>
+      <TotalInvoicesAmount>
+        <TotalAmount>{{'%0.2f'| format(sales_invoice.grand_total|float)}}</TotalAmount>
+      </TotalInvoicesAmount>
+      <TotalOutstandingAmount>
+        <TotalAmount>{{'%0.2f'| format(sales_invoice.grand_total|float)}}</TotalAmount>
+      </TotalOutstandingAmount>
+      <TotalExecutableAmount>
+        <TotalAmount>{{'%0.2f'| format(sales_invoice.grand_total|float)}}</TotalAmount>
+      </TotalExecutableAmount>
+      <InvoiceCurrencyCode>{{sales_invoice.currency}}</InvoiceCurrencyCode>
+    </Batch>
+  </FileHeader>
+  <Parties>
+    <SellerParty>
+      <TaxIdentification>
+        <PersonTypeCode>{{customer.PersonTypeCode}}</PersonTypeCode>
+        <ResidenceTypeCode>R</ResidenceTypeCode>
+        <TaxIdentificationNumber>{{sales_invoice.tax_id}}</TaxIdentificationNumber>
+      </TaxIdentification>
+      <LegalEntity>
+        <CorporateName>{{company.abbr}}</CorporateName>
+        <AddressInSpain>
+          <Address>{{company_address.address_line1}}</Address>
+          <PostCode>{{company_address.pincode}}</PostCode>
+          <Town>{{company_address.city}}</Town>
+          <Province>{{company_address.state}}</Province>
+          <CountryCode>{{company_address.country_code}}</CountryCode>
+        </AddressInSpain>
+        <ContactDetails>
+          <Telephone>{{company.phone_no}}</Telephone>
+          <ElectronicMail>{{company.email}}</ElectronicMail>
+        </ContactDetails>
+      </LegalEntity>
+    </SellerParty>
+    <BuyerParty>
+      <TaxIdentification>
+        <PersonTypeCode>{{customer.PersonTypeCode}}</PersonTypeCode>
+        <ResidenceTypeCode>R</ResidenceTypeCode>
+        <TaxIdentificationNumber>{{customer.tax_id}}</TaxIdentificationNumber>
+      </TaxIdentification>
+      <AdministrativeCentres>
+        <AdministrativeCentre>
+          <CentreCode>{{sales_invoice.oficina_contable}}</CentreCode>
+          <RoleTypeCode>01</RoleTypeCode>
+           <Name>{{sales_invoice.oficina_contable}}</Name>
+          <FirstSurname> </FirstSurname>
+          <AddressInSpain>
+            <Address>{{customer_address.address_line1}}</Address>
+            <PostCode>{{customer_address.pincode}}</PostCode>
+            <Town>{{customer_address.city}}</Town>
+            <Province>{{customer_address.state}}</Province>
+            <CountryCode>{{customer_address.country_code}}</CountryCode>
+          </AddressInSpain>
+        </AdministrativeCentre>
+        <AdministrativeCentre>
+          <CentreCode>{{sales_invoice.organo_gestor}}</CentreCode>
+          <RoleTypeCode>02</RoleTypeCode>
+          <Name>{{sales_invoice.organo_gestor}}</Name>
+          <FirstSurname> </FirstSurname>
+          <AddressInSpain>
+            <Address>{{customer_address.address_line1}}</Address>
+            <PostCode>{{customer_address.pincode}}</PostCode>
+            <Town>{{customer_address.city}}</Town>
+            <Province>{{customer_address.state}}</Province>
+            <CountryCode>{{customer_address.country_code}}</CountryCode>
+          </AddressInSpain>
+        </AdministrativeCentre>
+        <AdministrativeCentre>
+          <CentreCode>{{sales_invoice.unidad_tramitadora}}</CentreCode>
+          <RoleTypeCode>03</RoleTypeCode>
+          <Name>{{sales_invoice.unidad_tramitadora}}</Name>
+          <FirstSurname> </FirstSurname>
+          <AddressInSpain>
+            <Address>{{customer_address.address_line1}}</Address>
+            <PostCode>{{customer_address.pincode}}</PostCode>
+            <Town>{{customer_address.city}}</Town>
+            <Province>{{customer_address.state}}</Province>
+            <CountryCode>{{customer_address.country_code}}</CountryCode>
+          </AddressInSpain>
+        </AdministrativeCentre>
+		
+		<AdministrativeCentre>
+      <CentreCode>{{sales_invoice.organo_proponente}}</CentreCode>
+      <RoleTypeCode>04</RoleTypeCode>
+      <Name>{{sales_invoice.organo_proponente}}</Name>
+      <AddressInSpain>
+        <Address>{{customer_address.address_line1}}</Address>
+        <PostCode>{{customer_address.pincode}}</PostCode>
+        <Town>{{customer_address.city}}</Town>
+        <Province>{{customer_address.state}}</Province>
+        <CountryCode>{{customer_address.country_code}}</CountryCode>
+      </AddressInSpain>
+      </AdministrativeCentre>
+		
+      </AdministrativeCentres>
+      <LegalEntity>
+        <CorporateName>{{customer.customer_name}}</CorporateName>
+        <AddressInSpain>
+          <Address>{{customer_address.address_line1}}</Address>
+          <PostCode>{{customer_address.pincode}}</PostCode>
+          <Town>{{customer_address.city}}</Town>
+          <Province>{{customer_address.state}}</Province>
+          <CountryCode>{{customer_address.country_code}}</CountryCode>
+        </AddressInSpain>
+        <ContactDetails>
+          <Telephone />
+          <ElectronicMail />
+        </ContactDetails>
+      </LegalEntity>
+    </BuyerParty>
+  </Parties>
+  <Invoices>
+    <Invoice>
+      <InvoiceHeader>
+        <InvoiceNumber>{{sales_invoice.number}}</InvoiceNumber>
+        <InvoiceSeriesCode>{{sales_invoice.serie}}</InvoiceSeriesCode>
+        <InvoiceDocumentType>FC</InvoiceDocumentType>
+        <InvoiceClass>OO</InvoiceClass>
+      </InvoiceHeader>
+      <InvoiceIssueData>
+        <IssueDate>{{sales_invoice.posting_date}}</IssueDate>
+        <InvoiceCurrencyCode>{{sales_invoice.currency}}</InvoiceCurrencyCode>
+        <TaxCurrencyCode>{{sales_invoice.currency}}</TaxCurrencyCode>
+        <LanguageName>es</LanguageName>
+      </InvoiceIssueData>
+      <TaxesOutputs>
+        <Tax>
+          <TaxTypeCode>01</TaxTypeCode>
+          <TaxRate>0.00</TaxRate>
+          <TaxableBase>
+            <TotalAmount>{{'%0.2f'| format(sales_invoice.total|float)}}</TotalAmount>
+          </TaxableBase>
+          <TaxAmount>
+            <TotalAmount>0.00</TotalAmount>
+          </TaxAmount>
+        </Tax>
+      </TaxesOutputs>
+      <InvoiceTotals>
+        <TotalGrossAmount>{{'%0.2f'| format(sales_invoice.total|float)}}</TotalGrossAmount>
+        <TotalGrossAmountBeforeTaxes>{{'%0.2f'| format(sales_invoice.total|float)}}</TotalGrossAmountBeforeTaxes>
+        <TotalTaxOutputs>0.00</TotalTaxOutputs>
+        <TotalTaxesWithheld>0.00</TotalTaxesWithheld>
+        <InvoiceTotal>{{'%0.2f'| format(sales_invoice.grand_total|float)}}</InvoiceTotal>
+        <TotalOutstandingAmount>{{'%0.2f'| format(sales_invoice.grand_total|float)}}</TotalOutstandingAmount>
+        <TotalExecutableAmount>{{'%0.2f'| format(sales_invoice.grand_total|float)}}</TotalExecutableAmount>
+      </InvoiceTotals>
+      <Items>
+      {% for item in sales_invoice.items %}
+        <InvoiceLine>
+          <FileReference>{{item.name}}</FileReference>
+          <ItemDescription>{{item.item_name}}</ItemDescription>
+          <Quantity>{{item.qty}}</Quantity>
+          <UnitPriceWithoutTax>{{item.net_amount}}</UnitPriceWithoutTax>
+          <TotalCost>{{item.net_amount}}</TotalCost>
+          <GrossAmount>{{item.net_amount}}</GrossAmount>
+          <TaxesOutputs>
+            <Tax>
+              <TaxTypeCode>01</TaxTypeCode>
+              <TaxRate>0.00</TaxRate>
+              <TaxableBase>
+                <TotalAmount>{{item.net_amount}}</TotalAmount>
+              </TaxableBase>
+            </Tax>
+          </TaxesOutputs>
+          <TransactionDate>{{sales_invoice.posting_date}}</TransactionDate>
+        </InvoiceLine>
+      {% endfor %}
+      </Items>
+      <AdditionalData>
+        <InvoiceAdditionalInformation>Exento de IVA. Art.13.1.12º (exención de IVA, clave 4) del Reglamento.
+Art.20 de la Ley del Impuesto sobre el Valor Añadido (Ley 37/1992).   ENTIDAD OPEN BANK IBAN ES47-0073-0100-5005-0563-6074</InvoiceAdditionalInformation>
+      </AdditionalData>
+    </Invoice>
+  </Invoices>
+</namespace:Facturae>

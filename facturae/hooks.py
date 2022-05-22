@@ -9,6 +9,8 @@ app_color = "grey"
 app_email = "pedro@hispalisdigital.com"
 app_license = "MIT"
 
+fixtures = ["Custom Field"]
+
 # Includes in <head>
 # ------------------
 
@@ -31,7 +33,15 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+	"Sales Invoice":[
+        "custom_script/sales_invoice.js"
+    ]
+}
+
+website_route_rules = [
+	{"from_route": "/facturae/<sales_invoice_name>", "to_route": "facturae.xml"}
+]
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
