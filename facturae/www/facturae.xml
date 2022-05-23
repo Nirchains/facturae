@@ -159,15 +159,15 @@
           <FileReference>{{item.name}}</FileReference>
           <ItemDescription>{{item.item_name}}</ItemDescription>
           <Quantity>{{item.qty}}</Quantity>
-          <UnitPriceWithoutTax>{{item.net_amount}}</UnitPriceWithoutTax>
-          <TotalCost>{{item.net_amount}}</TotalCost>
-          <GrossAmount>{{item.net_amount}}</GrossAmount>
+          <UnitPriceWithoutTax>{{'%0.2f'| format(item.net_amount|float)}}</UnitPriceWithoutTax>
+          <TotalCost>{{'%0.2f'| format(item.net_amount|float)}}</TotalCost>
+          <GrossAmount>{{'%0.2f'| format(item.net_amount|float)}}</GrossAmount>
           <TaxesOutputs>
             <Tax>
               <TaxTypeCode>01</TaxTypeCode>
               <TaxRate>0.00</TaxRate>
               <TaxableBase>
-                <TotalAmount>{{item.net_amount}}</TotalAmount>
+                <TotalAmount>{{'%0.2f'| format(item.net_amount|float)}}</TotalAmount>
               </TaxableBase>
             </Tax>
           </TaxesOutputs>
