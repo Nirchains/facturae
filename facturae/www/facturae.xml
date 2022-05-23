@@ -175,9 +175,18 @@
         </InvoiceLine>
       {% endfor %}
       </Items>
+      <PaymentDetails>
+        <Installment>
+        <InstallmentDueDate>{{sales_invoice.posting_date}}</InstallmentDueDate>
+        <InstallmentAmount>{{'%0.2f'| format(sales_invoice.grand_total|float)}}</InstallmentAmount>
+        <PaymentMeans>04</PaymentMeans>
+        <AccountToBeCredited>
+          <IBAN>ES4700730100500505636074</IBAN>
+        </AccountToBeCredited>
+        </Installment>
+      </PaymentDetails>
       <AdditionalData>
-        <InvoiceAdditionalInformation>Exento de IVA. Art.13.1.12º (exención de IVA, clave 4) del Reglamento.
-Art.20 de la Ley del Impuesto sobre el Valor Añadido (Ley 37/1992).   ENTIDAD OPEN BANK IBAN ES47-0073-0100-5005-0563-6074</InvoiceAdditionalInformation>
+        <InvoiceAdditionalInformation>{{doc.terms}}</InvoiceAdditionalInformation>
       </AdditionalData>
     </Invoice>
   </Invoices>
