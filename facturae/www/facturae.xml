@@ -185,12 +185,12 @@
         </AccountToBeCredited>
         </Installment>
       </PaymentDetails>
+      <LegalLiterals>
+        <LegalReference>Operación exenta por aplicación del artículo 20 de la Ley 37/1992, de 28 de diciembre, del Impuesto sobre el Valor Añadido</LegalReference>
+      </LegalLiterals>
       <AdditionalData>
         <InvoiceAdditionalInformation></InvoiceAdditionalInformation>
       </AdditionalData>
-      <LegalLiterals>
-      <LegalReference>EXENTO DE IVA. ART.13.1.12º (exención del IVA, clave 4) del Reglamento del Impuesto. Artículo 20 de la Ley del Impuesto sobre el Valor Añadido (Ley 37/1992)</LegalReference>
-      </LegalLiterals>
     </Invoice>
   </Invoices>
 </namespace:Facturae>
