@@ -186,7 +186,7 @@
         </Installment>
       </PaymentDetails>
       <AdditionalData>
-        <InvoiceAdditionalInformation>{{doc.terms}}</InvoiceAdditionalInformation>
+        <InvoiceAdditionalInformation>{{sales_invoice.terms}}</InvoiceAdditionalInformation>
       </AdditionalData>
     </Invoice>
   </Invoices>
