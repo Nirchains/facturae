@@ -181,7 +181,7 @@
         <InstallmentAmount>{{'%0.2f'| format(sales_invoice.grand_total|float)}}</InstallmentAmount>
         <PaymentMeans>04</PaymentMeans>
         <AccountToBeCredited>
-          <IBAN>ES4700730100500505636074</IBAN>
+          <IBAN>{{company.default_bank_account_number}}</IBAN>
         </AccountToBeCredited>
         </Installment>
       </PaymentDetails>

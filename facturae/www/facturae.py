@@ -8,7 +8,7 @@ from frappe.contacts.doctype.address.address import get_default_address
 from six import iteritems
 from six.moves.urllib.parse import quote, urljoin
 
-import frappe
+import frappe, json
 from frappe.model.document import get_controller
 from frappe.utils import get_datetime, get_url, nowdate
 from frappe.website.router import get_all_page_context_from_doctypes, get_pages
@@ -34,6 +34,7 @@ def get_context(context):
 	context.company_address = frappe.get_doc("Address", company_address_name)
 	context.company_address.country_code = frappe.db.get_value("Country", context.company_address.country, "code")
 
+	context.company.default_bank_account_number = frappe.db.get_value("Bank Account", {"account": context.company.default_bank_account, "company": context.company.name}, "iban")
 
 	context.customer = frappe.get_doc("Customer", context.sales_invoice.customer)
 		
