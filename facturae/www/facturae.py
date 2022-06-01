@@ -24,7 +24,7 @@ def get_context(context):
 	
 	context.sales_invoice_name = frappe.local.form_dict.sales_invoice_name
 
-	context.sales_invoice = frappe.get_doc("Sales Invoice", "F-2022-00001")
+	context.sales_invoice = frappe.get_doc("Sales Invoice", context.sales_invoice_name)
 
 	context.sales_invoice.serie = context.sales_invoice.name[0:len(context.sales_invoice.name)-5]
 	context.sales_invoice.number = context.sales_invoice.name[-5]
