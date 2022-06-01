@@ -27,7 +27,7 @@ def get_context(context):
 	context.sales_invoice = frappe.get_doc("Sales Invoice", context.sales_invoice_name)
 
 	context.sales_invoice.serie = context.sales_invoice.name[0:len(context.sales_invoice.name)-5]
-	context.sales_invoice.number = context.sales_invoice.name[-5]
+	context.sales_invoice.number = int(context.sales_invoice.name[-5:])
 
 	context.company = frappe.get_doc("Company", context.sales_invoice.company)
 	company_address_name = get_default_address("Company", context.company.name)

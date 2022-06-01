@@ -5,7 +5,7 @@
     <Modality>I</Modality>
     <InvoiceIssuerType>EM</InvoiceIssuerType>
     <Batch>
-      <BatchIdentifier>{{sales_invoice.tax_id}}-{{sales_invoice.serie}}</BatchIdentifier>
+      <BatchIdentifier>{{sales_invoice.company_tax_id}}-{{sales_invoice.serie}}</BatchIdentifier>
       <InvoicesCount>1</InvoicesCount>
       <TotalInvoicesAmount>
         <TotalAmount>{{'%0.2f'| format(sales_invoice.grand_total|float)}}</TotalAmount>
@@ -24,7 +24,7 @@
       <TaxIdentification>
         <PersonTypeCode>{{customer.PersonTypeCode}}</PersonTypeCode>
         <ResidenceTypeCode>R</ResidenceTypeCode>
-        <TaxIdentificationNumber>{{sales_invoice.tax_id}}</TaxIdentificationNumber>
+        <TaxIdentificationNumber>{{sales_invoice.company_tax_id}}</TaxIdentificationNumber>
       </TaxIdentification>
       <LegalEntity>
         <CorporateName>{{company.abbr}}</CorporateName>
@@ -48,6 +48,7 @@
         <TaxIdentificationNumber>{{customer.tax_id}}</TaxIdentificationNumber>
       </TaxIdentification>
       <AdministrativeCentres>
+      {% if sales_invoice.oficina_contable %}
         <AdministrativeCentre>
           <CentreCode>{{sales_invoice.oficina_contable}}</CentreCode>
           <RoleTypeCode>01</RoleTypeCode>
@@ -61,6 +62,8 @@
             <CountryCode>{{customer_address.country_code}}</CountryCode>
           </AddressInSpain>
         </AdministrativeCentre>
+        {% endif %}
+        {% if sales_invoice.organo_gestor %}
         <AdministrativeCentre>
           <CentreCode>{{sales_invoice.organo_gestor}}</CentreCode>
           <RoleTypeCode>02</RoleTypeCode>
@@ -74,6 +77,8 @@
             <CountryCode>{{customer_address.country_code}}</CountryCode>
           </AddressInSpain>
         </AdministrativeCentre>
+        {% endif %}
+        {% if sales_invoice.unidad_tramitadora %}
         <AdministrativeCentre>
           <CentreCode>{{sales_invoice.unidad_tramitadora}}</CentreCode>
           <RoleTypeCode>03</RoleTypeCode>
@@ -87,20 +92,21 @@
             <CountryCode>{{customer_address.country_code}}</CountryCode>
           </AddressInSpain>
         </AdministrativeCentre>
-		
-		<AdministrativeCentre>
-      <CentreCode>{{sales_invoice.organo_proponente}}</CentreCode>
-      <RoleTypeCode>04</RoleTypeCode>
-      <Name>{{sales_invoice.organo_proponente}}</Name>
-      <AddressInSpain>
-        <Address>{{customer_address.address_line1}}</Address>
-        <PostCode>{{customer_address.pincode}}</PostCode>
-        <Town>{{customer_address.city}}</Town>
-        <Province>{{customer_address.state}}</Province>
-        <CountryCode>{{customer_address.country_code}}</CountryCode>
-      </AddressInSpain>
-      </AdministrativeCentre>
-		
+        {% endif %}
+        {% if sales_invoice.organo_proponente %}
+        <AdministrativeCentre>
+          <CentreCode>{{sales_invoice.organo_proponente}}</CentreCode>
+          <RoleTypeCode>04</RoleTypeCode>
+          <Name>{{sales_invoice.organo_proponente}}</Name>
+          <AddressInSpain>
+            <Address>{{customer_address.address_line1}}</Address>
+            <PostCode>{{customer_address.pincode}}</PostCode>
+            <Town>{{customer_address.city}}</Town>
+            <Province>{{customer_address.state}}</Province>
+            <CountryCode>{{customer_address.country_code}}</CountryCode>
+          </AddressInSpain>
+          </AdministrativeCentre>
+        {% endif %}
       </AdministrativeCentres>
       <LegalEntity>
         <CorporateName>{{customer.customer_name}}</CorporateName>
