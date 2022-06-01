@@ -11,6 +11,8 @@ app_license = "MIT"
 
 fixtures = ["Custom Field"]
 
+default_mail_footer = ""
+
 # Includes in <head>
 # ------------------
 
