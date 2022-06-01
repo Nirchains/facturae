@@ -14,8 +14,8 @@ frappe.ui.form.on('Sales Invoice', {
 			});	
 		}
 
-		frm.set_value("tc_name", "IVA 0");
-		frm.refresh_fields();
+		//frm.set_value("tc_name", "IVA 0");
+		//frm.refresh_fields();
 	}
 	
 });
