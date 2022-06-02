@@ -39,7 +39,7 @@ frappe.ui.form.on('Sales Invoice', {
 			real_name: frm.doc.real_name || frm.doc.contact_display || frm.doc.contact_name
 		}
 		d = new frappe.views.CommunicationComposer(args);
-		delete_saved_draft();
+		d.delete_saved_draft();
 		d.txt = "1"; //Para borrar el mensaje anterior guardado
 		d.dialog.fields_dict.email_template.set_value(d.email_template || '');
 				
