@@ -14,10 +14,36 @@ frappe.ui.form.on('Sales Invoice', {
 			});	
 		}
 
+		frm.add_custom_button(__("Enviar factura"), function() {
+			frm.trigger("enviar_factura");
+		});	
+
 		//frm.set_value("tc_name", "IVA 0");
 		//frm.refresh_fields();
 		frm.set_value("payment_terms_template", "Transferencia");
 		frm.refresh_fields();
+	},
+
+	enviar_factura: function(frm){
+		localStorage.removeItem(frm.doctype + frm.docname);
+		var d;	
+		var args = {
+			doc: frm.doc,
+			frm: frm,
+			sender: "tesoreria@cnde.es",
+			subject: __("Cuota miembro CNDE") + ': ' + frm.docname,
+			recipients: frm.doc.email || frm.doc.email_id || frm.doc.contact_email,
+			attach_document_print: true,
+			message: "",
+			email_template: "Cuota miembro CNDE",
+			real_name: frm.doc.real_name || frm.doc.contact_display || frm.doc.contact_name
+		}
+		d = new frappe.views.CommunicationComposer(args);
+		delete_saved_draft();
+		d.txt = "1"; //Para borrar el mensaje anterior guardado
+		d.dialog.fields_dict.email_template.set_value(d.email_template || '');
+				
+		return d;
 	}
 	
 });
