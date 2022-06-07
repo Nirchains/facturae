@@ -6,17 +6,30 @@ cur_frm.add_fetch('customer_address', 'organo_proponente', 'organo_proponente');
 
 frappe.ui.form.on('Sales Invoice', {
 	refresh: function(frm) {
+		if (frm.doc.docstatus > 0) {
+			frm.add_custom_button(__("Cliente"), function() {
+			  frappe.route_options = {
+				voucher_no: me.frm.doc.name,
+				from_date: me.frm.doc.posting_date,
+				to_date: moment(me.frm.doc.modified).format("YYYY-MM-DD"),
+				company: me.frm.doc.company,
+				group_by: "Group by Voucher (Consolidated)",
+				show_cancelled_entries: me.frm.doc.docstatus === 2
+			  };
+			  frappe.set_route("query-report", "General Ledger");
+			}, __("View"));
+		  }
 		if (frm.doc.metodo_envio == "FACE") {
 			frm.add_custom_button(__("Generar FACTURAe"), function() {
 				var host = window.location.protocol + "//" + window.location.host;
 				var url = host + "/facturae/" + frm.doc.name;
 				window.open(url);
-			});	
+			}, __('Create'));	
 		}
 
 		frm.add_custom_button(__("Enviar factura"), function() {
 			frm.trigger("enviar_factura");
-		});	
+		}, __('Create'));	
 
 		//frm.set_value("tc_name", "IVA 0");
 		//frm.refresh_fields();
@@ -44,6 +57,18 @@ frappe.ui.form.on('Sales Invoice', {
 		d.dialog.fields_dict.email_template.set_value(d.email_template || '');
 				
 		return d;
+	},
+
+	actualiza_datos: function(frm) {
+		frappe.call({
+			method: "facturae.utils.update_sales_invoice_from_invoice",
+			args: {
+				sales_invoice_name: frm.doc.name
+			},
+			callback: function(r) {
+				frm.reload_doc();
+			}
+		});
 	}
 	
 });

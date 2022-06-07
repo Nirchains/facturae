@@ -41,10 +41,17 @@ doctype_js = {
     ]
 }
 
+doctype_list_js = {
+	"Sales Invoice":[
+        "custom_script/sales_invoice_list.js"
+    ]
+}
+
 website_route_rules = [
 	{"from_route": "/facturae/<sales_invoice_name>", "to_route": "facturae.xml"}
 ]
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+
+
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
