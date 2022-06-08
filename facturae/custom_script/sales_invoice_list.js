@@ -1,5 +1,4 @@
-frappe.listview_settings['Sales Invoice'] = {
-	onload: function(list_view) {
+frappe.listview_settings['Sales Invoice'].onload = function(list_view) {
 		list_view.page.add_menu_item(__("Actualiza datos FACE"), function() {
             const registros = list_view.get_checked_items();
             //console.log(list_view.get_checked_items(true));
@@ -18,6 +17,4 @@ frappe.listview_settings['Sales Invoice'] = {
 			
 
 		});
-	},
-
 };
