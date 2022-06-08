@@ -28,7 +28,8 @@ def get_context(context):
 	
 	namesplit = context.sales_invoice.name.split("-")
 	context.sales_invoice.serie = "{0}-{1}".format(namesplit[0], namesplit[1])
-	context.sales_invoice.number = int(namesplit[2])
+	#context.sales_invoice.number = int(namesplit[2])
+	context.sales_invoice.number = context.sales_invoice.name.replace(context.sales_invoice.serie, "")
 
 	context.company = frappe.get_doc("Company", context.sales_invoice.company)
 	company_address_name = get_default_address("Company", context.company.name)
