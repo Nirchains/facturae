@@ -27,7 +27,7 @@
         <TaxIdentificationNumber>{{sales_invoice.company_tax_id}}</TaxIdentificationNumber>
       </TaxIdentification>
       <LegalEntity>
-        <CorporateName>{{company.abbr}}</CorporateName>
+        <CorporateName>{{company.name}}</CorporateName>
         <AddressInSpain>
           <Address>{{company_address.address_line1}}</Address>
           <PostCode>{{company_address.pincode}}</PostCode>
@@ -137,6 +137,9 @@
         <InvoiceCurrencyCode>{{sales_invoice.currency}}</InvoiceCurrencyCode>
         <TaxCurrencyCode>{{sales_invoice.currency}}</TaxCurrencyCode>
         <LanguageName>es</LanguageName>
+        {%if sales_invoice.source%}
+        <ReceiverTransactionReference>{{sales_invoice.source}}</ReceiverTransactionReference>
+        {%endif%}
       </InvoiceIssueData>
       <TaxesOutputs>
         <Tax>
